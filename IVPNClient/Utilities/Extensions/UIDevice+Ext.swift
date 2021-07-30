@@ -23,6 +23,8 @@
 
 import UIKit
 import SystemConfiguration.CaptiveNetwork
+import NetworkExtension
+import os
 
 extension UIDevice {
     
@@ -104,6 +106,17 @@ extension UIDevice {
     }()
     
     static var wiFiSsid: String? {
+        if #available(iOS 15.0, *) {
+            NEHotspotNetwork.fetchCurrent { network in
+                if let unwrappedNetwork = network {
+                    let networkSSID = unwrappedNetwork.ssid
+                    os_log("IVPNNetworkDebug: %{public}@ and signal strength %d", networkSSID , unwrappedNetwork.signalStrength)
+                } else {
+                    os_log("IVPNNetworkDebug: No available network")
+                }
+            }
+        }
+        
         var ssid: String?
         if let interfaces = CNCopySupportedInterfaces() as NSArray? {
             for interface in interfaces {

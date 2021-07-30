@@ -197,6 +197,7 @@
 		82AA85782514DEB40027DAB8 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D90470216C7DAF0032F3BE /* Date+Ext.swift */; };
 		82AA8818231E330A00E18ECB /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA8817231E330A00E18ECB /* SessionStatus.swift */; };
 		82AAF0E92253A4A8005E792F /* StaticWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AAF0E82253A4A8005E792F /* StaticWebViewController.swift */; };
+		82ABA45026B4723C0092C439 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82ABA44F26B4723C0092C439 /* ExternalAccessory.framework */; };
 		82B51CDF21DE3E31005CC9C9 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B51CDE21DE3E31005CC9C9 /* UITableView+Ext.swift */; };
 		82B605262170840C004B40E6 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B605252170840C004B40E6 /* PacketTunnelProvider.swift */; };
 		82B6052B2170840C004B40E6 /* wireguard-tunnel-provider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 82B605232170840C004B40E6 /* wireguard-tunnel-provider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -548,6 +549,7 @@
 		82A9E8C823471FB2007BCA7E /* wg-staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "wg-staging.xcconfig"; sourceTree = "<group>"; };
 		82AA8817231E330A00E18ECB /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
 		82AAF0E82253A4A8005E792F /* StaticWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticWebViewController.swift; sourceTree = "<group>"; };
+		82ABA44F26B4723C0092C439 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		82B51CDE21DE3E31005CC9C9 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		82B605232170840C004B40E6 /* wireguard-tunnel-provider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "wireguard-tunnel-provider.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B605252170840C004B40E6 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				82D598C621A6A5C7000FABDE /* SystemConfiguration.framework in Frameworks */,
 				9CB2CE311DAF9227007A4D2D /* CoreData.framework in Frameworks */,
 				9C6942251DD0CBF800F9A801 /* NetworkExtension.framework in Frameworks */,
+				82ABA45026B4723C0092C439 /* ExternalAccessory.framework in Frameworks */,
 				9CC29DF01E1560990080F799 /* StoreKit.framework in Frameworks */,
 				D661274AA295C4153E1286AB /* Pods_IVPNClient.framework in Frameworks */,
 			);
@@ -748,6 +751,7 @@
 		584496306C3B9383149618CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82ABA44F26B4723C0092C439 /* ExternalAccessory.framework */,
 				8294BC8D22A126C900328932 /* TunnelKit.framework */,
 				8294BC8B22A10F4100328932 /* TunnelKit.framework */,
 				824F56072233FE6F00BCDD5C /* libwg-go.a */,
