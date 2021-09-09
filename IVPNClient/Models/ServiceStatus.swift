@@ -32,7 +32,7 @@ struct ServiceStatus: Codable {
     var currentPlan: String?
     var activeUntil: Int?
     var isOnFreeTrial: Bool?
-    let username: String?
+    var username: String?
     let upgradeToUrl: String?
     let paymentMethod: String?
     let capabilities: [String]?
@@ -112,6 +112,18 @@ struct ServiceStatus: Codable {
     func activeUntilExpired() -> Bool {
         let activeUntilDate = Date(timeIntervalSince1970: TimeInterval(activeUntil ?? 0))
         return Date() > activeUntilDate
+    }
+    
+    func isLegacyAccount() -> Bool {
+        guard let username = username, let currentPlan = currentPlan else {
+            return false
+        }
+        
+        if username.hasPrefix("ivpn") && currentPlan.hasPrefix("IVPN Pro") && currentPlan != "IVPN Pro" {
+            return true
+        }
+        
+        return false
     }
     
 }
