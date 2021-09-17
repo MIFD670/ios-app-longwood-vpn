@@ -19,6 +19,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         let errorNotifier = ErrorNotifier(activationAttemptId: activationAttemptId)
 
         Logger.configureGlobal(tagged: "NET", withFilePath: FileManager.logFileURL?.path)
+        
+        setupLogging()
 
         wg_log(.info, message: "Starting tunnel from the " + (activationAttemptId == nil ? "OS directly, rather than the app" : "app"))
 
@@ -91,9 +93,11 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)? = nil) {
-        guard let completionHandler = completionHandler else { return }
-
-        if messageData.count == 1 && messageData[0] == 0 {
+        wg_log(.info, message: "Handle App Message size: \(messageData.count)")
+        
+        if messageData.count == 1 && messageData[0] == 99 {
+            flushLogsToFile()
+        } else if let completionHandler = completionHandler, messageData.count == 1 && messageData[0] == 0 {
             adapter.getRuntimeConfiguration { settings in
                 var data: Data?
                 if let settings = settings {
@@ -102,9 +106,26 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 completionHandler(data)
             }
         } else {
-            completionHandler(nil)
+            completionHandler?(nil)
         }
     }
+    
+    private func setupLogging() {
+        Logger.configureGlobal(tagged: "IVPN-WG", withFilePath: FileManager.logFileURL?.path)
+    }
+    
+    private func flushLogsToFile() {
+        guard let path = FileManager.logTextFileURL?.path else { return }
+        if Logger.global == nil {
+            setupLogging()
+        }
+        if Logger.global?.writeLog(to: path) ?? false {
+            wg_log(.info, message: "flushLogsToFile written to file \(path) ")
+        } else {
+            wg_log(.info, message: "flushLogsToFile error while writing to file \(path) ")
+        }
+    }
+    
 }
 
 extension WireGuardLogLevel {
